@@ -1,7 +1,7 @@
 interface Case {
 	id: string;
 	date: string;
-	healthCareDistrict: string;
+	healthCareDistrict?: string;
 	infectionSourceCountry?: string;
 	infectionSource?: number;
 }
@@ -21,7 +21,7 @@ async function getData() {
 		.then(res => res.json())
 		.catch(() => null);
 
-	// Check if there is data
+	// Check if there is data asd
 	if (!data) {
 		return null;
 	}

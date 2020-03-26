@@ -4,7 +4,9 @@
 	"description": "A repo for a basic site displaying COVID-19 statistics in Finland.",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "tsc"
+		"build": "tsc",
+		"serve": "serve .",
+		"build:watch": "nodemon --watch src --exec npm run build"
 	},
 	"repository": {
 		"type": "git",
@@ -15,5 +17,17 @@
 	"bugs": {
 		"url": "https://github.com/jpaljakka/korona-data/issues"
 	},
-	"homepage": "https://github.com/jpaljakka/korona-data#readme"
+	"homepage": "https://github.com/jpaljakka/korona-data#readme",
+	"devDependencies": {
+		"nodemon": "^2.0.2",
+		"serve": "^11.3.0",
+		"typescript": "^3.8.3"
+	},
+	"nodemonConfig": {
+		"ignore": [
+			"dist"
+		],
+		"ext": "ts, js, json",
+		"delay": "2500"
+	}
 }
