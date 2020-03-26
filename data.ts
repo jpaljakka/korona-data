@@ -6,7 +6,7 @@ interface Case {
 	infectionSource?: number;
 }
 
-interface Data {
+interface CoronaData {
 	confirmed: Case[];
 	deaths: Case[];
 	recovered: Case[];
@@ -17,7 +17,7 @@ const corona_url =
 
 async function getData() {
 	// Data request
-	const data = await fetch(corona_url)
+	const data: CoronaData = await fetch(corona_url)
 		.then(res => res.json())
 		.catch(() => null);
 
