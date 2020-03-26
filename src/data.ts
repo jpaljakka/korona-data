@@ -47,6 +47,8 @@ async function getData() {
 		if (!districts[alue]) districts[alue] = 0;
 	});
 
+	console.table(districts);
+
 	// Display data
 	// Tohon arrayhin voi vaa lisää nimen ja se näyttää mitä siel on tapahtunu
 	const displayedDistricts = ['HUS'];
