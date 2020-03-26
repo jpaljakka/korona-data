@@ -21,7 +21,7 @@ async function getData() {
 	const recoveredTotal = recovered.length;
 	const district = deaths[0].healthCareDistrict;
 
-	const districts = data.confirmed.reduce((acc, { healthCareDistrict }) => {
+	const districts = confirmed.reduce((acc, { healthCareDistrict }) => {
 		acc[healthCareDistrict] ? acc[healthCareDistrict]++	: (acc[healthCareDistrict] = 1);
 		return acc;
 	}, {});
