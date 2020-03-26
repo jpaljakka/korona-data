@@ -1,0 +1,9 @@
+:root{
+    --maincolor: #d3531a;
+    --headfont: white; 
+    --casing: uppercase;
+    --spacing: 2px;
+    --font: 'Source Code Pro', monospace;
+    --pointer: pointer;
+    --plr: 1rem;
+}
