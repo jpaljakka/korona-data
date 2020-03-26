@@ -44,7 +44,7 @@ async function getData() {
 
 	// Display data
 	// Tohon arrayhin voi vaa lisää nimen ja se näyttää mitä siel on tapahtunu
-	const displayedDistricts = ['HUS'];
+	const displayedDistricts = ['Lappi'];
 	const districtsContainer = document.getElementById('districts');
 	displayedDistricts.forEach(districtName => {
 		const element = document.createElement('p');
@@ -58,6 +58,7 @@ async function getData() {
 	document.getElementById('total').innerText += confirmedTotal;
 	document.getElementById('deaths').innerText += deathsTotal;
 	document.getElementById('recovered').innerText += recoveredTotal;
+
 }
 
 getData();
