@@ -1,3 +1,17 @@
+interface Case {
+	id: string;
+	date: string;
+	healthCareDistrict: string;
+	infectionSourceCountry?: string;
+	infectionSource?: number;
+}
+
+interface Data {
+	confirmed: Case[];
+	deaths: Case[];
+	recovered: Case[];
+}
+
 const corona_url =
 	'https://w3qa5ydb4l.execute-api.eu-west-1.amazonaws.com/prod/finnishCoronaData/';
 
@@ -22,9 +36,11 @@ async function getData() {
 	const district = deaths[0].healthCareDistrict;
 
 	const districts = confirmed.reduce((acc, { healthCareDistrict }) => {
-		acc[healthCareDistrict] ? acc[healthCareDistrict]++	: (acc[healthCareDistrict] = 1);
+		acc[healthCareDistrict]
+			? acc[healthCareDistrict]++
+			: (acc[healthCareDistrict] = 1);
 		return acc;
-	}, {});
+	}, {} as { [name: string]: number });
 
 	// Display data
 	// Tohon arrayhin voi vaa lisää nimen ja se näyttää mitä siel on tapahtunu

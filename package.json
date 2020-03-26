@@ -1,0 +1,19 @@
+{
+	"name": "korona-data",
+	"version": "1.0.0",
+	"description": "A repo for a basic site displaying COVID-19 statistics in Finland.",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jpaljakka/korona-data.git"
+	},
+	"author": "Jonne Paljakkka",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/jpaljakka/korona-data/issues"
+	},
+	"homepage": "https://github.com/jpaljakka/korona-data#readme"
+}
