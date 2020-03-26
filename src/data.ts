@@ -42,6 +42,11 @@ async function getData() {
 		return acc;
 	}, {} as { [name: string]: number });
 
+	const KAIKKI_ALUEET_APISTA = ['HUS', 'Pohjois Pohajanmaa', 'Mäntsälä']; // + monta muuta
+	KAIKKI_ALUEET_APISTA.forEach(alue => {
+		if (!districts[alue]) districts[alue] = 0;
+	});
+
 	// Display data
 	// Tohon arrayhin voi vaa lisää nimen ja se näyttää mitä siel on tapahtunu
 	const displayedDistricts = ['HUS'];
