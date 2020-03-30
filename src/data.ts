@@ -21,50 +21,95 @@ async function getData() {
 		.then(res => res.json())
 		.catch(() => null);
 
-	// Check if there is data asd
+	// Check if there is data 
 	if (!data) {
 		return null;
 	}
 
 	// Seperate values
 	const { confirmed, deaths, recovered } = data;
-
-	// Data allocatio
-	const deathsTotal = deaths.length;
-	const confirmedTotal = confirmed.length;
-	const recoveredTotal = recovered.length;
-	const district = deaths[0].healthCareDistrict;
-
-	const districts = confirmed.reduce((acc, { healthCareDistrict }) => {
+	
+	// Districts
+	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);
 		return acc;
 	}, {} as { [name: string]: number });
 
-	const KAIKKI_ALUEET_APISTA = ['HUS', 'Pohjois Pohajanmaa', 'Mäntsälä']; // + monta muuta
-	KAIKKI_ALUEET_APISTA.forEach(alue => {
-		if (!districts[alue]) districts[alue] = 0;
+	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', null]; 
+	district_zero.forEach(alue => {
+		if (!total_districts[alue]) total_districts[alue] = 0;
 	});
 
-	console.table(districts);
+	// Display districts data
+	const displayedDistricts = district_zero;
+	const districtsContainer = document.getElementById('patient_district');
 
-	// Display data
-	// Tohon arrayhin voi vaa lisää nimen ja se näyttää mitä siel on tapahtunu
-	const displayedDistricts = ['HUS'];
-	const districtsContainer = document.getElementById('districts');
 	displayedDistricts.forEach(districtName => {
 		const element = document.createElement('p');
-		const cases = districts[districtName];
-		element.innerText = `${districtName}: ${cases} cases`;
+		const dist = total_districts[districtName];
+		element.classList.add('confirmed');
+		element.innerText = `${districtName}: ${dist} Patients`;
 		districtsContainer.appendChild(element);
+
 	});
 
-	// Nöäistä en tienny niin jätin
-	document.getElementById('district').innerHTML = district;
-	document.getElementById('total').innerText += confirmedTotal;
-	document.getElementById('deaths').innerText += deathsTotal;
-	document.getElementById('recovered').innerText += recoveredTotal;
+	// Deaths
+
+	const total_deaths = deaths.reduce((acc, { healthCareDistrict }) => {
+		acc[healthCareDistrict]
+			? acc[healthCareDistrict]++
+			: (acc[healthCareDistrict] = 1);
+		return acc;
+	}, {} as { [name: string]: number });
+
+
+	const deathsContainer = document.getElementById('death_district');
+	const displayedDeaths = Object.keys(total_deaths); //keyt joissa on arvo sisällä
+	displayedDeaths.forEach(districtDeath => {
+		const element = document.createElement('p');
+		const death = total_deaths[districtDeath];
+		element.classList.add('deaths');
+		element.innerText = `${districtDeath}: ${death} Patients`;
+		deathsContainer.appendChild(element);
+	});	
+
+	// Recover
+	const total_recovers = recovered.reduce((acc, { healthCareDistrict }) => {
+		acc[healthCareDistrict]
+			? acc[healthCareDistrict]++
+			: (acc[healthCareDistrict] = 1);
+		return acc;
+	}, {} as { [name: string]: number });
+
+
+	const recoversContainer = document.getElementById('recovers_district');
+	const displayedRecovers = Object.keys(total_recovers);
+	displayedRecovers.forEach(districtRecover => {
+		const element = document.createElement('p');
+		const recov = total_recovers[districtRecover];
+			element.classList.add('recovers');
+			element.innerText = `${districtRecover}: ${recov} Patients`;
+			recoversContainer.appendChild(element);
+	});	
+
+
+	//Timeline, displaying amount of cases day by day
+	const date_time = confirmed.reduce((acc, { date }) => {
+		acc[date]
+			? acc[date]++
+			: (acc[date] = 1);
+		return acc;
+	}, {} as { [name: string]: number });
+	console.table(date_time);
+
+	// Data allocation
+
+
+	document.getElementById('total_patients').innerText +=  data.confirmed.length;
+	document.getElementById('total_deaths').innerText +=  data.deaths.length;
+	document.getElementById('total_recovered').innerText += data.recovered.length; 
 }
 
 getData();

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="./scripts/data.js"></script>
+    <script src="./scripts/scripts.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-analytics.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <title>Korona Data</title>
+</head>
+<!-- teemun kanssa angular -->
+<body>
+
+    <header>
+        <div class="header_wrapper">
+
+            <div class="logo">
+                <a href=""> COVID-19 Data <br>
+                    <p class="secondary_color"> Finland </p>
+                </a>
+            </div>
+
+
+            <div id="nav-icon1">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+    </header>
+    <nav id="dropdown-content">
+        <ul class="content">
+            <li id="navHome"><a href="/districts">Healthcare Districts</a></li>
+            <li id="navExperience"><a href="#experience">Zero ground</a></li>
+            <li id="navContact"><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    </div>
+    <section id="banner">
+        <h1>COVID19</h1>
+    </section>
+    <section id="total_districts">
+        <div class="card">
+            <h1>Total patients</h1>
+            <p id="total_patients"></p>
+        </div>
+        <div class="card">
+            <h1>Deaths</h1>
+            <p id="total_deaths"></p>
+        </div>
+        <div class="card">
+            <h1>Recovers</h1>
+            <p id="total_recovered"></p>
+        </div>
+        
+        <div id="patient_district">
+            <h2>Patients by district</h2>
+        </div>
+        <div id="death_district">
+            <h2>Deaths by districts</h2>
+        </div>
+        
+        <div id="recovers_district">
+            <h2>Recovers by districts</h2>
+        </div>
+    </section>
+
+
+    <footer></footer>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAHfw9ZDoD0EpxAYuXfxfuAu-3StdwOj3c",
+    authDomain: "korona-data.firebaseapp.com",
+    databaseURL: "https://korona-data.firebaseio.com",
+    projectId: "korona-data",
+    storageBucket: "korona-data.appspot.com",
+    messagingSenderId: "247219247699",
+    appId: "1:247219247699:web:681c6091e5cee48e9b04a6",
+    measurementId: "G-6VW8VY1E1D"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</body>
+
+</html>
