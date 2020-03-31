@@ -27,17 +27,18 @@ async function getData() {
 	}
 
 	// Seperate values
-	const { confirmed, deaths, recovered } = data;
+	const { confirmed, deaths, recovered } = data; 
 	
 	// Districts
 	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
-		acc[healthCareDistrict]
-			? acc[healthCareDistrict]++
-			: (acc[healthCareDistrict] = 1);
-		return acc;
-	}, {} as { [name: string]: number });
+		healthCareDistrict = healthCareDistrict || "Tuntematon" 
+        acc[healthCareDistrict]
+            ? acc[healthCareDistrict]++
+            : (acc[healthCareDistrict] = 1);
+        return acc;
+    }, {} as { [name: string]: number });
 
-	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', null]; 
+	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'Tuntematon']; 
 	district_zero.forEach(alue => {
 		if (!total_districts[alue]) total_districts[alue] = 0;
 	});
@@ -52,18 +53,15 @@ async function getData() {
 		element.classList.add('confirmed');
 		element.innerText = `${districtName}: ${dist} Patients`;
 		districtsContainer.appendChild(element);
-
 	});
 
 	// Deaths
-
 	const total_deaths = deaths.reduce((acc, { healthCareDistrict }) => {
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);
 		return acc;
 	}, {} as { [name: string]: number });
-
 
 	const deathsContainer = document.getElementById('death_district');
 	const displayedDeaths = Object.keys(total_deaths); //keyt joissa on arvo sisällä
@@ -83,7 +81,6 @@ async function getData() {
 		return acc;
 	}, {} as { [name: string]: number });
 
-
 	const recoversContainer = document.getElementById('recovers_district');
 	const displayedRecovers = Object.keys(total_recovers);
 	displayedRecovers.forEach(districtRecover => {
@@ -93,7 +90,6 @@ async function getData() {
 			element.innerText = `${districtRecover}: ${recov} Patients`;
 			recoversContainer.appendChild(element);
 	});	
-
 
 	//Timeline, displaying amount of cases day by day
 	const date_time = confirmed.reduce((acc, { date }) => {
@@ -105,11 +101,11 @@ async function getData() {
 	console.table(date_time);
 
 	// Data allocation
-
-
 	document.getElementById('total_patients').innerText +=  data.confirmed.length;
 	document.getElementById('total_deaths').innerText +=  data.deaths.length;
 	document.getElementById('total_recovered').innerText += data.recovered.length; 
+
+
 }
 
 getData();
