@@ -32,11 +32,9 @@ async function getData() {
 	// Districts
 	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
 		healthCareDistrict = healthCareDistrict || "Tuntematon" 
-        acc[healthCareDistrict]
-            ? acc[healthCareDistrict]++
-            : (acc[healthCareDistrict] = 1);
-        return acc;
-    }, {} as { [name: string]: number });
+        acc[healthCareDistrict] ? acc[healthCareDistrict]++ : (acc[healthCareDistrict] = 1);
+		return acc;
+	  }, {} as { [name: string]: number });
 
 	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'Tuntematon']; 
 	district_zero.forEach(alue => {
@@ -104,8 +102,6 @@ async function getData() {
 	document.getElementById('total_patients').innerText +=  data.confirmed.length;
 	document.getElementById('total_deaths').innerText +=  data.deaths.length;
 	document.getElementById('total_recovered').innerText += data.recovered.length; 
-
-
 }
 
 getData();
