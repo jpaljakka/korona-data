@@ -27,7 +27,7 @@ async function getData() {
 	}
 
 	// Seperate values
-	const { confirmed, deaths, recovered } = data; 
+	const { confirmed, deaths, recovered } = data;
 	
 	// Districts
 	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
@@ -62,7 +62,7 @@ async function getData() {
 	}, {} as { [name: string]: number });
 
 	const deathsContainer = document.getElementById('death_district');
-	const displayedDeaths = Object.keys(total_deaths); //keyt joissa on arvo sisällä
+	const displayedDeaths = Object.keys(total_deaths); 
 	displayedDeaths.forEach(districtDeath => {
 		const element = document.createElement('p');
 		const death = total_deaths[districtDeath];
