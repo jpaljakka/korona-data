@@ -31,6 +31,7 @@
 		"delay": "500"
 	},
 	"dependencies": {
+		"@types/jquery": "^3.3.34",
 		"@types/node": "^13.9.5",
 		"chart.js": "^2.9.3",
 		"express": "^4.17.1"

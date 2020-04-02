@@ -31,12 +31,12 @@ async function getData() {
 	
 	// Districts
 	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
-		healthCareDistrict = healthCareDistrict || "Tuntematon" 
+		healthCareDistrict = healthCareDistrict || 'No District' 
         acc[healthCareDistrict] ? acc[healthCareDistrict]++ : (acc[healthCareDistrict] = 1);
 		return acc;
 	  }, {} as { [name: string]: number });
 
-	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'Tuntematon']; 
+	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'No District']; 
 	district_zero.forEach(alue => {
 		if (!total_districts[alue]) total_districts[alue] = 0;
 	});
@@ -55,6 +55,7 @@ async function getData() {
 
 	// Deaths
 	const total_deaths = deaths.reduce((acc, { healthCareDistrict }) => {
+		healthCareDistrict = healthCareDistrict || 'No District'  
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);
@@ -73,6 +74,7 @@ async function getData() {
 
 	// Recover
 	const total_recovers = recovered.reduce((acc, { healthCareDistrict }) => {
+		healthCareDistrict = healthCareDistrict || 'No District' 
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);

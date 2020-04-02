@@ -4,7 +4,7 @@ let app = express();
 app.use(express.static(__dirname + "/public"));
 
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + './public/index.html');
 });
 
 app.get('/districts', function(req, res){
@@ -17,4 +17,10 @@ app.get('/zero', function(req, res){
 
 app.get("*", function(req, res){
     res.status(404).sendFile(__dirname + "/public/404.html"); 
+});
+
+
+let server = app.listen(8081, function(){
+    let port = server.address().port;
+    console.log("Server started at http://localhost:%s", port);
 });

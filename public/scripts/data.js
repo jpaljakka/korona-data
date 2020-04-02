@@ -51,13 +51,11 @@ function getData() {
                     confirmed = data.confirmed, deaths = data.deaths, recovered = data.recovered;
                     total_districts = confirmed.reduce(function (acc, _a) {
                         var healthCareDistrict = _a.healthCareDistrict;
-                        healthCareDistrict = healthCareDistrict || "Tuntematon";
-                        acc[healthCareDistrict]
-                            ? acc[healthCareDistrict]++
-                            : (acc[healthCareDistrict] = 1);
+                        healthCareDistrict = healthCareDistrict || 'No District';
+                        acc[healthCareDistrict] ? acc[healthCareDistrict]++ : (acc[healthCareDistrict] = 1);
                         return acc;
                     }, {});
-                    district_zero = ['Ahvenanmaa', 'Etelä-Karjala', 'Etelä-Pohjanmaa', 'Etelä-Savo', 'HUS', 'Itä-Savo', 'Kainuu', 'Kanta-Häme', 'Keski-Pohjanmaa', 'Keski-Suomi', 'Kymenlaakso', 'Lappi', 'Länsi-Pohja', 'Pirkanmaa', 'Pohjois-Karjala', 'Pohjois-Pohjanmaa', 'Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'Tuntematon'];
+                    district_zero = ['Ahvenanmaa', 'Etelä-Karjala', 'Etelä-Pohjanmaa', 'Etelä-Savo', 'HUS', 'Itä-Savo', 'Kainuu', 'Kanta-Häme', 'Keski-Pohjanmaa', 'Keski-Suomi', 'Kymenlaakso', 'Lappi', 'Länsi-Pohja', 'Pirkanmaa', 'Pohjois-Karjala', 'Pohjois-Pohjanmaa', 'Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'No District'];
                     district_zero.forEach(function (alue) {
                         if (!total_districts[alue])
                             total_districts[alue] = 0;
@@ -73,6 +71,7 @@ function getData() {
                     });
                     total_deaths = deaths.reduce(function (acc, _a) {
                         var healthCareDistrict = _a.healthCareDistrict;
+                        healthCareDistrict = healthCareDistrict || 'No District';
                         acc[healthCareDistrict]
                             ? acc[healthCareDistrict]++
                             : (acc[healthCareDistrict] = 1);
@@ -89,6 +88,7 @@ function getData() {
                     });
                     total_recovers = recovered.reduce(function (acc, _a) {
                         var healthCareDistrict = _a.healthCareDistrict;
+                        healthCareDistrict = healthCareDistrict || 'No District';
                         acc[healthCareDistrict]
                             ? acc[healthCareDistrict]++
                             : (acc[healthCareDistrict] = 1);
