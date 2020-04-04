@@ -4,9 +4,9 @@
 	"description": "A repo for a basic site displaying COVID-19 statistics in Finland.",
 	"main": "index.js",
 	"scripts": {
-		"build": "tsc && node public/scripts/index.js",
+		"build": "tsc && node /public/scripts/index.js",
 		"serve": "npm run build && serve public",
-		"server": "tsc && node public/scripts/server.js",
+		"server": "tsc && node /public/scripts/server.js",
 		"build:serve": "nodemon --watch src --exec npm run serve",
 		"build:server": "nodemon --watch src --exec npm run server"
 	},

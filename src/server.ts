@@ -1,16 +1,17 @@
 let express = require('express');
 let app = express();
 const {BigQuery} = require('@google-cloud/bigquery');
-app.get('/data', async (req, res) => {
-  
 
-  
-  const bigqueryOptions = {
+app.use(express.static(__dirname + "/public"));
+
+
+app.get('/', async (req, res) => {
+  const query_options = {
     keyFilename: __dirname + '/sa.json',
     projectId: 'korona-data',
   };
-  const bigquery = new BigQuery(bigqueryOptions);
-  const query = "SELECT * FROM `bigquery-public-data.covid19_jhu_csse_eu.confirmed_cases` WHERE country_region = 'Finland'";
+  const bigquery = new BigQuery(query_options);
+  let query = "SELECT * FROM `bigquery-public-data.covid19_jhu_csse_eu.summary` WHERE country_region = 'Finland'";
 
   // For all options, see https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query
   const options = {
@@ -20,14 +21,16 @@ app.get('/data', async (req, res) => {
   };
 
   // Run the query as a job
-  const [job] = await bigquery.createQueryJob(options).catch(e => e);
+  const [job] = await bigquery.createQueryJob(options)
+  .catch(err => err);
   if (!job){
-    return res.send ("nojob")
+    return res.send ("ERROR")
   }
   console.log(`Job ${job.id} started.`);
 
   // Wait for the query to finish
-  const [rows] = await job.getQueryResults().catch(e => []);
+  const [rows] = await job.getQueryResults()
+  .catch(err => err);
   if (!rows){
     return res.send ("NO ROWS")
 }
@@ -36,14 +39,14 @@ app.get('/data', async (req, res) => {
   console.log('Rows:');
   rows.forEach(row => console.log(row));
   res.send(JSON.stringify(rows))
+
 }
 );
 
-app.use(express.static(__dirname + "/public"));
 
-app.get('/', function(req, res){
-    //res.sendFile(__dirname + '../index.html');
-    res.send ("lol")
+app.get('/index', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+   
 });
 
 app.get('/districts', function(req, res){
