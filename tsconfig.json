@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "/public/scripts",
+		"outDir": "src/public/scripts",
 		"resolveJsonModule": true
 	}
 }

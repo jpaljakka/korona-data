@@ -39,10 +39,8 @@ app.get('/', async (req, res) => {
   console.log('Rows:');
   rows.forEach(row => console.log(row));
   res.send(JSON.stringify(rows))
-
 }
 );
-
 
 app.get('/index', function(req, res){
     res.sendFile(__dirname + '/index.html');
