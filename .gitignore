@@ -1,5 +1,6 @@
-scripts
 node_modules
+scripts
+
 .firebase
 .firebaseerc
 firebase

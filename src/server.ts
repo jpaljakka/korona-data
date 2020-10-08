@@ -5,7 +5,7 @@ const {BigQuery} = require('@google-cloud/bigquery');
 app.use(express.static(__dirname + "/public"));
 
 
-app.get('/', async (req, res) => {
+app.get('/data', async (req, res) => {
   const query_options = {
     keyFilename: __dirname + '/sa.json',
     projectId: 'korona-data',
@@ -48,7 +48,7 @@ app.get('/index', function(req, res){
 });
 
 app.get('/districts', function(req, res){
-    res.sendFile(__dirname + '/public/districts.html');
+    res.sendFile(__dirname + '../public/districts.html');
 });
 
 app.get('/zero', function(req, res){

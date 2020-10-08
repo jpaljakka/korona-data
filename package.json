@@ -4,9 +4,9 @@
 	"description": "A repo for a basic site displaying COVID-19 statistics in Finland.",
 	"main": "index.js",
 	"scripts": {
-		"build": "tsc && node /public/scripts/index.js",
+		"build": "tsc && node ./scripts/index.js",
 		"serve": "npm run build && serve public",
-		"server": "tsc && node /public/scripts/server.js",
+		"server": "tsc && node src/server.js",
 		"build:serve": "nodemon --watch src --exec npm run serve",
 		"build:server": "nodemon --watch src --exec npm run server"
 	},
@@ -23,11 +23,13 @@
 	"devDependencies": {
 		"nodemon": "^2.0.2",
 		"serve": "^11.3.0",
+		"@types/node": "^13.11.0",
+		"@google-cloud/bigquery": "^4.7.0",
 		"typescript": "^3.8.3"
 	},
 	"nodemonConfig": {
 		"ignore": [
-			"dist"
+			"scripts"
 		],
 		"ext": "ts, js, json",
 		"delay": "500"
@@ -35,7 +37,7 @@
 	"dependencies": {
 		"@google-cloud/bigquery": "^4.7.0",
 		"@types/jquery": "^3.3.34",
-		"@types/node": "^13.9.5",
+		"@types/node": "^13.11.0", 
 		"chart.js": "^2.9.3",
 		"express": "^4.17.1"
 	}

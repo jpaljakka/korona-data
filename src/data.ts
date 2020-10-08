@@ -28,15 +28,15 @@ async function getData() {
 
 	// Seperate values
 	const { confirmed, deaths, recovered } = data;
-	
+
 	// Districts
 	const total_districts = confirmed.reduce((acc, { healthCareDistrict }) => {
-		healthCareDistrict = healthCareDistrict || 'No District' 
-        acc[healthCareDistrict] ? acc[healthCareDistrict]++ : (acc[healthCareDistrict] = 1);
+		healthCareDistrict = healthCareDistrict || 'No District'
+		acc[healthCareDistrict] ? acc[healthCareDistrict]++ : (acc[healthCareDistrict] = 1);
 		return acc;
-	  }, {} as { [name: string]: number });
+	}, {} as { [name: string]: number });
 
-	const district_zero =  ['Ahvenanmaa','Etelä-Karjala','Etelä-Pohjanmaa','Etelä-Savo','HUS','Itä-Savo','Kainuu','Kanta-Häme', 'Keski-Pohjanmaa','Keski-Suomi','Kymenlaakso','Lappi','Länsi-Pohja','Pirkanmaa','Pohjois-Karjala','Pohjois-Pohjanmaa','Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'No District']; 
+	const district_zero = ['Ahvenanmaa', 'Etelä-Karjala', 'Etelä-Pohjanmaa', 'Etelä-Savo', 'HUS', 'Itä-Savo', 'Kainuu', 'Kanta-Häme', 'Keski-Pohjanmaa', 'Keski-Suomi', 'Kymenlaakso', 'Lappi', 'Länsi-Pohja', 'Pirkanmaa', 'Pohjois-Karjala', 'Pohjois-Pohjanmaa', 'Pohjois-Savo', 'Päijät-Häme', 'Satakunta', 'Vaasa', 'Varsinais-Suomi', 'No District'];
 	district_zero.forEach(alue => {
 		if (!total_districts[alue]) total_districts[alue] = 0;
 	});
@@ -55,7 +55,7 @@ async function getData() {
 
 	// Deaths
 	const total_deaths = deaths.reduce((acc, { healthCareDistrict }) => {
-		healthCareDistrict = healthCareDistrict || 'No District'  
+		healthCareDistrict = healthCareDistrict || 'No District'
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);
@@ -63,18 +63,18 @@ async function getData() {
 	}, {} as { [name: string]: number });
 
 	const deathsContainer = document.getElementById('death_district');
-	const displayedDeaths = Object.keys(total_deaths); 
+	const displayedDeaths = Object.keys(total_deaths);
 	displayedDeaths.forEach(districtDeath => {
 		const element = document.createElement('p');
 		const death = total_deaths[districtDeath];
 		element.classList.add('deaths');
 		element.innerText = `${districtDeath}: ${death} Patients`;
 		deathsContainer.appendChild(element);
-	});	
+	});
 
 	// Recover
 	const total_recovers = recovered.reduce((acc, { healthCareDistrict }) => {
-		healthCareDistrict = healthCareDistrict || 'No District' 
+		healthCareDistrict = healthCareDistrict || 'No District'
 		acc[healthCareDistrict]
 			? acc[healthCareDistrict]++
 			: (acc[healthCareDistrict] = 1);
@@ -86,10 +86,10 @@ async function getData() {
 	displayedRecovers.forEach(districtRecover => {
 		const element = document.createElement('p');
 		const recov = total_recovers[districtRecover];
-			element.classList.add('recovers');
-			element.innerText = `${districtRecover}: ${recov} Patients`;
-			recoversContainer.appendChild(element);
-	});	
+		element.classList.add('recovers');
+		element.innerText = `${districtRecover}: ${recov} Patients`;
+		recoversContainer.appendChild(element);
+	});
 
 	//Timeline, displaying amount of cases day by day
 	const date_time = confirmed.reduce((acc, { date }) => {
@@ -101,9 +101,9 @@ async function getData() {
 	console.table(date_time);
 
 	// Data allocation
-	document.getElementById('total_patients').innerText +=  data.confirmed.length;
-	document.getElementById('total_deaths').innerText +=  data.deaths.length;
-	document.getElementById('total_recovered').innerText += data.recovered.length; 
+	document.getElementById('total_patients').innerText += data.confirmed.length;
+	document.getElementById('hs').innerText += data.deaths.length;
+	document.getElementById('total_recovered').innerText += data.recovered.length;
 }
 
 getData();
