@@ -39,6 +39,6 @@
 		"@types/jquery": "^3.3.34",
 		"@types/node": "^13.11.0", 
 		"chart.js": "^2.9.3",
-		"express": "^4.17.1"
+		"express": "^4.17.3"
 	}
 }
